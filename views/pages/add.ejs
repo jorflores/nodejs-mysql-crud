@@ -1,0 +1,32 @@
+<%- include ('../layouts/header.ejs') %>	
+
+<form action="/videojuegos/add" method="post" name="form1">
+	<table width="25%" id="videojuegos">
+		<tr> 
+			<td>Nombre</td>
+			<td><input type="text" name="nombre" id="nombre" value="<%= nombre %>" /></td>
+		</tr>
+		<tr> 
+			<td>Año</td>
+			<td><input type="text" name="año" id="año" value="<%= año %>" /></td>
+		</tr>
+		<tr> 
+			<td>Clasificación</td>
+			<td><input type="text" name="clasificacion" id="clasificacion" value="<%= clasificacion %>" /></td>
+		</tr>
+		<tr> 
+			<td>Comentarios</td>
+			<td><input type="text" name="comentarios" id="comentarios" value="<%= comentarios %>" /></td>
+		</tr>
+		<tr> 
+			<td>Calificación</td>
+			<td><input type="text" name="calificacion" id="calificacion" value="<%= calificacion %>" /></td>
+		</tr>
+		<tr> 
+			<td></td>
+			<td><input type="submit" name="Submit" value="Agregar" /></td>
+		</tr>
+	</table>
+</form>
+
+<%- include ('../layouts/footer.ejs') %>
