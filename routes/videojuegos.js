@@ -1,22 +1,22 @@
 var express = require('express')
+const verifyToken = require('../middleware/verifyAccess')
 var app = express()
 
-
-
- app.get('/', function(req, res) {
+ app.get('/',verifyToken, function(req, res) {
 	req.getConnection(function(error, conn) {
 		conn.query('SELECT * FROM videojuegos ORDER BY id DESC',function(err, rows, fields) {
 			//if(err) throw err
 			if (err) {
                 console.log(err)
 				res.render('videojuegos/list', {
-					title: 'All Countries',
+					title: 'Videojuegos',
 					data: ''
 				})
 			} else {
 				// render to views/country/list.ejs template file
+				console.log(rows);
 				res.render('pages/list', {
-					title: 'All Countries', 
+					title: 'Todos los Videojuegos', 
 					data: rows
 				})
 			}
@@ -25,7 +25,7 @@ var app = express()
 }) 
 
 
-app.get('/add', function(req, res){	
+app.get('/add',verifyToken, function(req, res){	
 	// render to views/country/add.ejs
 	res.render('pages/add', {
 		title: 'Agregar Nuevo Videojuego',
@@ -75,7 +75,7 @@ console.log(videojuego);
 		})
 	})
 
-	app.get('/edit/(:id)', function(req, res){
+	app.get('/edit/(:id)',verifyToken, function(req, res){
 		req.getConnection(function(error, conn) {
 			conn.query('SELECT * FROM videojuegos WHERE id = ' + req.params.id, function(err, rows, fields) {
 				if(err) throw err

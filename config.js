@@ -10,7 +10,11 @@ var config = {
 	server: {
 		host:'127.0.0.1', // the host for the server
 		port: '3000' // the port for the server
-	}
+	} ,
+	 API: {
+		 loginurl: "https://chatarrap-api.herokuapp.com/users/login",
+		 imagesUrl: "https://chatarrap-api.herokuapp.com/images"
+	 }
 }
 
 module.exports = config

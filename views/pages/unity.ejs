@@ -1,0 +1,67 @@
+<%- include ('../layouts/header.ejs') %>	
+
+
+<div id="unity-container" class="unity-desktop">
+    <canvas id="unity-canvas"></canvas>
+    <div id="unity-loading-bar">
+      <div id="unity-logo"></div>
+      <div id="unity-progress-bar-empty">
+        <div id="unity-progress-bar-full"></div>
+      </div>
+    </div>
+    <div id="unity-footer">
+      <div id="unity-webgl-logo"></div>
+      <div id="unity-fullscreen-button"></div>
+      <div id="unity-build-title">TC2005B.11 Colisiones</div>
+    </div>
+  </div>
+  <script>
+
+   var buildUrl = '<%- url %>/unity';
+   //var buildUrl = "http://localhost:4000/unity/"
+    var loaderUrl = buildUrl + "/287aab641244b99da9eff192f2a21a69.js";
+    var config = {
+      dataUrl: buildUrl + "/6e586c0fe6d919835663635110674cf3.unityweb",
+      frameworkUrl: buildUrl + "/f40426ae8a45069bafd8d9a18805626f.unityweb",
+      codeUrl: buildUrl + "/72ad4b6553a76e86cf288f1248a57df0.unityweb",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "DefaultCompany",
+      productName: "TC2005B.11 Colisiones",
+      productVersion: "1.0",
+    };
+
+    var container = document.querySelector("#unity-container");
+    var canvas = document.querySelector("#unity-canvas");
+    var loadingBar = document.querySelector("#unity-loading-bar");
+    var progressBarFull = document.querySelector("#unity-progress-bar-full");
+    var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+
+    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+      container.className = "unity-mobile";
+      config.devicePixelRatio = 1;
+    } else {
+      canvas.style.width = "960px";
+      canvas.style.height = "600px";
+    }
+    loadingBar.style.display = "block";
+
+    var script = document.createElement("script");
+    script.src = loaderUrl;
+    script.onload = () => {
+      createUnityInstance(canvas, config, (progress) => {
+        progressBarFull.style.width = 100 * progress + "%";
+      }).then((unityInstance) => {
+        loadingBar.style.display = "none";
+        fullscreenButton.onclick = () => {
+          unityInstance.SetFullscreen(1);
+        };
+      }).catch((message) => {
+        alert(message);
+      });
+    };
+    document.body.appendChild(script);
+  </script>
+
+
+
+<%- include ('../layouts/footer.ejs') %>

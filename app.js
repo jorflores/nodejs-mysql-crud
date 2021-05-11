@@ -4,6 +4,9 @@ var bodyParser = require('body-parser')
 var mysql = require('mysql2')
 var config = require('./config')
 var myConnection  = require('express-myconnection')
+var cookieParser = require('cookie-parser');
+var axios = require("axios");
+const verify = require('./middleware/verifyAccess');
 
 
 
@@ -26,14 +29,20 @@ app.use(myConnection(mysql, dbOptions, 'pool'))
 
 var index = require('./routes/index')
 var videojuegos = require('./routes/videojuegos')
+var api = require('./routes/api');
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(cookieParser())
+//app.use(verify)
 
 
 app.use('/', index)
 app.use('/videojuegos', videojuegos)
+app.use('/api',api);
+
 
 app.listen(3000, function(){
 	console.log('Node Countries Light running at port 3000: http://127.0.0.1:3000')
+
 })

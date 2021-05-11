@@ -22,9 +22,11 @@
 		});
 	-->
 	<% if (data) { %>
+
+
 	<% data.forEach(function(videojuego){ %>
 		<tr>
-			<td id="nombre"><%= videojuego.nombre %></td>
+			<td id="nombre"><%= videojuego.nombre %></td>  
 			<td id="año"><%= videojuego.año %></td>
 			<td id="clasificacion"><%= videojuego.clasificacion %></td>
 			<td id="comentarios"><%= videojuego.comentarios %></td>
@@ -32,12 +34,6 @@
 			<td>
 				<div style="float:left">
 
-
-
-
-
-
-					
 					<a href='/videojuegos/edit/<%= videojuego.id %>'>Edit</a> &nbsp;							
 					<form method="post" action="/videojuegos/delete/<%= videojuego.id %>" style="float:right">
 						<input type="submit" name="delete" value='Delete' onClick="return confirm('Seguro que desea eliminar el registro?')" />
