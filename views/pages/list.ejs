@@ -34,7 +34,7 @@
 			<td>
 				<div style="float:left">
 
-					<a href='/videojuegos/edit/<%= videojuego.id %>'>Edit</a> &nbsp;							
+					<a class ="btn btn-secondary" href='/videojuegos/edit/<%= videojuego.id %>'>Edit</a> &nbsp;							
 					<form method="post" action="/videojuegos/delete/<%= videojuego.id %>" style="float:right">
 						<input type="submit" name="delete" value='Delete' onClick="return confirm('Seguro que desea eliminar el registro?')" />
 						<input type="hidden" name="_method" value="DELETE" />

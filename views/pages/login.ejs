@@ -1,16 +1,23 @@
-<div>
-    <h3>Bienvenido</h3>
-    <form action="/login" method="POST">
-      <div className="form-group"> 
-        <label>Nombre de usuario:</label>
-        <input  type="text" required name="user"/>
-      </div>
-      <div className="form-group"> 
-        <label>Contraseña:</label>
-        <input  type="password" required name="password"/>
-      </div>    
-      <div className="form-group">
-        <input type="submit" value="Iniciar sesión" className="btn btn-primary" />
-      </div>
-    </form>
-  </div>
+
+<%- include ('../layouts/header.ejs') %>	
+
+
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+  
+      <!-- Login Form -->
+      <form action="/login" method="POST">
+        <input type="text" id="login" class="fadeIn second" name="user" placeholder="Nombre de usuario">
+        <input type="text" id="password" class="fadeIn third" name="password" placeholder="contraseña">
+        <input type="submit" class="fadeIn fourth" value="Log In">
+      </form>
+  
+
+  
+    </div>
+
+
+
+  <%- include ('../layouts/footer.ejs') %>

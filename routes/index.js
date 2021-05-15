@@ -25,6 +25,15 @@ app.get('/',verifyToken, function(req, res) {
 
 });
 
+app.get('/logout', function(req, res) {
+		res.cookie("token","",{httpOnly:true,maxAge:-1})
+		res.cookie("user","",{httpOnly:true,maxAge:-1})
+	 res.redirect("/");
+});
+
+
+	
+
 app.get('/images',verifyToken, function(req, res) {
 	// render to views/index.ejs template file
 	var title = 'Images';
@@ -55,9 +64,7 @@ app.get('/images',verifyToken, function(req, res) {
 app.get('/login', function(req, res) {
 	// render to views/index.ejs template file
 	var title = 'Login';
-    res.render('pages/login', {
-    	title: title
-    });
+    res.render('pages/login', {title: title});
 
 });
 
