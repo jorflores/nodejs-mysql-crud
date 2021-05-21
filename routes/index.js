@@ -8,9 +8,11 @@ var app = express()
 
 app.get('/unityTest', function(req, res) {
 	var url = req.protocol + '://' + req.get('host')
-	// render to views/index.ejs template file
+    
+	// Obtenemos el usuario de la cookie y se lo mandamos a la pagina que muestra el juego
+	var user = req.cookies.user || '';
 	var title = 'Unity Test';
-    res.render('pages/unity', {title: title,url});
+    res.render('pages/unity', {title: title,url,user});
  
 });
 
