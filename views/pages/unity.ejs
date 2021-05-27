@@ -59,7 +59,8 @@
         }).then((unityInstance) => {
           loadingBar.style.display = "none";
           
-		  unityInstance.SendMessage('WebObject', 'Print', '<%= user  %>');
+		  unityInstance.SendMessage('WebObject', 'getUser', '<%= user  %>');
+      unityInstance.SendMessage('WebObject', 'getToken', '<%= token  %>');
           fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);			
           };

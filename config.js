@@ -13,7 +13,8 @@ var config = {
 	} ,
 	 API: {
 		 loginurl: "https://chatarrap-api.herokuapp.com/users/login",
-		 imagesUrl: "https://chatarrap-api.herokuapp.com/images"
+		 imagesUrl: "https://chatarrap-api.herokuapp.com/images",
+		 resultadosJuegoURL: "https://calm-bastion-98916.herokuapp.com/scores/"
 	 }
 }
 

@@ -1,2 +1,11 @@
 
+<%- include ('../layouts/header.ejs') %>	
 
+<% for (var i = 0; i < data.length; i++)  { %>
+
+<img height= 300 src = <%=data[i].imageURL %> />
+
+
+<%  } %>
+
+<%- include ('../layouts/footer.ejs') %>
