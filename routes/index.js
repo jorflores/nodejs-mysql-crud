@@ -11,7 +11,7 @@ app.get('/unityTest', function(req, res) {
     
 	// Obtenemos el usuario de la cookie y se lo mandamos a la pagina que muestra el juego
 	var user = req.cookies.user || '';
-	var authkey = req.cookies.token || '';
+	var token = req.cookies.token || '';
 	var title = 'Unity Test';
     res.render('pages/unity', {title: title,url,user,token});
  
