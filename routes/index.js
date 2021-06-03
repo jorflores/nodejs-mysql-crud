@@ -75,10 +75,10 @@ app.post('/login', async (req, res) => {
 	var user = {"username": req.body.user, "password": req.body.password};
 	var login_response = await axios.post(config.API.loginurl,user);
 	var user_details = await axios.get(config.API.userurl+login_response.data.user);
-	var arreglo = ["Defectos","Chatarra"];
+	var arreglo = user_details.data.usertype;   
+	// Converting array into a string separated by coma. 
 	var usertype= arreglo.join(); 
-	console.log(usertype);
-	
+
 		res.cookie("token",login_response.data.token,{httpOnly:true})
 		res.cookie("user",login_response.data.user,{httpOnly:true})
 		res.cookie("userType", usertype,{httpOnly:true})
@@ -86,10 +86,7 @@ app.post('/login', async (req, res) => {
 	} catch (error){
 		console.log(error)
 	}	
-		
 		return res.redirect('/');
-	
-
 });
 
 
