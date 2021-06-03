@@ -9,7 +9,6 @@ var axios = require("axios");
 const verify = require('./middleware/verifyAccess');
 
 
-
 var dbOptions = {
 	host:	  config.database.host,
 	user: 	  config.database.user,
@@ -36,11 +35,9 @@ app.use(express.json())
 app.use(cookieParser())
 //app.use(verify)
 
-
 app.use('/', index)
 app.use('/videojuegos', videojuegos)
 app.use('/api',api);
-
 
 app.listen(3000, function(){
 	console.log('Node Countries Light running at port 3000: http://127.0.0.1:3000')

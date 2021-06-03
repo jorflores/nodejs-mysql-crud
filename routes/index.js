@@ -35,7 +35,6 @@ app.get('/logout', function(req, res) {
 });
 
 
-	
 
 app.get('/images',verifyToken, function(req, res) {
 	// render to views/index.ejs template file
@@ -59,8 +58,6 @@ app.get('/images',verifyToken, function(req, res) {
 		console.log(error)
 	})
 
-
-
 });
 
 
@@ -71,20 +68,27 @@ app.get('/login', function(req, res) {
 
 });
 
+// Login operations with async call
+app.post('/login', async (req, res) => {
 
-app.post('/login', function(req, res) {
-
+	try {
 	var user = {"username": req.body.user, "password": req.body.password};
-	axios.post(config.API.loginurl,user)
-	.then(response => {
-		console.log(response.data)
-		res.cookie("token",response.data.token,{httpOnly:true})
-		res.cookie("user",response.data.user,{httpOnly:true})
+	var login_response = await axios.post(config.API.loginurl,user);
+	var user_details = await axios.get(config.API.userurl+login_response.data.user);
+	var arreglo = ["Defectos","Chatarra"];
+	var usertype= arreglo.join(); 
+	console.log(usertype);
+	
+		res.cookie("token",login_response.data.token,{httpOnly:true})
+		res.cookie("user",login_response.data.user,{httpOnly:true})
+		res.cookie("userType", usertype,{httpOnly:true})
+		
+	} catch (error){
+		console.log(error)
+	}	
+		
 		return res.redirect('/');
-	})
-	.catch(err=> {
-		console.log(err);
-	})
+	
 
 });
 
